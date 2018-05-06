@@ -1,0 +1,129 @@
+using System;
+using System.ComponentModel;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+using System.IO;
+
+namespace Y2SimpleFileFinder
+{
+    public partial class MainForm : Form
+    {
+        BackgroundWorker backgroundWorker1;
+        public MainForm()
+        {
+            InitializeComponent();
+
+            backgroundWorker1 = new BackgroundWorker();
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.CancelAsync();
+            }
+            else
+            {
+                progressBar1.Value = progressBar1.Minimum;
+                btnSearch.Text = "Stop";
+                listView1.Items.Clear();
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+        void AddToListView(string file)
+        {
+            FileInfo finfo = new FileInfo(file);
+            ListViewItem item = new ListViewItem(finfo.Name);
+            item.SubItems.Add(finfo.DirectoryName);
+            item.SubItems.Add(Math.Ceiling(finfo.Length / 1024f).ToString("0 KB"));
+
+            listView1.Invoke((Action)(() =&gt;
+                {
+                    listView1.BeginUpdate();
+                    listView1.Items.Add(item);
+                    listView1.EndUpdate();
+                }));
+
+        }
+
+        void ScanDirectory(string directory, string searchPattern)
+        {
+            try
+            {
+                foreach (var file in Directory.GetFiles(directory))
+                {
+                    if (backgroundWorker1.CancellationPending)
+                    {
+                        return;
+                    }
+
+                    lblProgress.Invoke((Action)(() =&gt; lblProgress.Text = file));
+                    if (file.Contains(searchPattern))
+                    {
+                        AddToListView(file);
+                    }
+                }
+
+                foreach (var dir in Directory.GetDirectories(directory))
+                {
+                    ScanDirectory(dir, searchPattern);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            string[] dirs = Directory.GetDirectories(txtFolderPath.Text);
+            float length = dirs.Length;
+            progressBar1.Invoke((Action)(() =&gt; progressBar1.Maximum = dirs.Length));
+            for (int i = 0; i &lt; dirs.Length; i++)
+            {
+                backgroundWorker1.ReportProgress((int)(i / length * 100));
+                ScanDirectory(dirs[i], txtSearch.Text);
+            }
+
+            backgroundWorker1.ReportProgress(100);
+
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (!backgroundWorker1.CancellationPending)
+            {
+                lblPercent.Text = e.ProgressPercentage + "%";
+                progressBar1.PerformStep();
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            lblProgress.Text = String.Format("{0} files found", listView1.Items.Count);
+            if (progressBar1.Value &lt; progressBar1.Maximum)
+            {
+                lblProgress.Text = "Searching cancelled. " + lblProgress.Text;
+            }
+            btnSearch.Text = "Search";
+        }
+
+        private void btnBrowser_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtFolderPath.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+    }
+}
