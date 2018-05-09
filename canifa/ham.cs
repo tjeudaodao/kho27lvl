@@ -23,6 +23,7 @@ namespace canifa
         SoundPlayer baothieu = new SoundPlayer("thieu.wav");
         SoundPlayer baothua = new SoundPlayer("thua.wav");
         SoundPlayer baodu = new SoundPlayer("du.wav");
+        SoundPlayer ngoai = new SoundPlayer("ngoai.wav");
 
         public string laymatong(string machitiet)
         {
@@ -65,6 +66,11 @@ namespace canifa
         {
             baodu.Play();
         }
+        public void baongoai()
+        {
+            ngoai.Play();
+        }
+
         public double ConvertToDouble(string Value)
         {
             if (Value == null)
@@ -141,6 +147,7 @@ namespace canifa
             return dt;
         }
         #endregion
+
         #region tab chuyen hang
 
         public DataTable copyvungchontuexcel()
@@ -184,15 +191,30 @@ namespace canifa
                 dt.AcceptChanges();
                 string goc = o.GetData(DataFormats.Text).ToString().TrimEnd("\r\n".ToCharArray());
                 string mau = @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\w+\s+\d+";
+                string mau1 = @"\d\w{2}\d{2}[SWAC]\d{3}\s+\w+";
                 string mau2 = @"\s+";
 
                 MatchCollection matchhts = Regex.Matches(goc, mau);
-                
+                MatchCollection matchmatong = Regex.Matches(goc, mau1);
                 foreach (Match h in matchhts)
                 {
 
                     string[] hang = Regex.Split(h.Value.ToString(), mau2);
                     
+                    DataRow rowadd = dt.NewRow();
+                    for (int i = 0; i < hang.Length; i++)
+                    {
+
+                        rowadd[i] = hang[i];
+
+                    }
+                    dt.Rows.Add(rowadd);
+                }
+                foreach (Match h in matchmatong)
+                {
+
+                    string[] hang = Regex.Split(h.Value.ToString(), mau2);
+
                     DataRow rowadd = dt.NewRow();
                     for (int i = 0; i < hang.Length; i++)
                     {
@@ -269,6 +291,7 @@ namespace canifa
                 excel.Workbooks book = app.Workbooks;
                 excel.Workbook sh = book.Open(duongdanfileexcel);
                 app.Visible = true;
+                
                 sh.PrintOutEx();
             }
             
@@ -310,31 +333,77 @@ namespace canifa
             sh.PrintOutEx();
             app.Quit();
         }
+        public void taovainfileexcelchuyenhang(DataTable dt, string tongsp)
+        {
+            ExcelPackage ExcelPkg = new ExcelPackage();
+            ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
+            worksheet.Cells["A1"].LoadFromDataTable(dt, true);
+
+            worksheet.Column(1).Width = 28;
+            worksheet.Column(2).Width = 4;
+
+
+
+            worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
+            worksheet.Cells[worksheet.Dimension.End.Row, 2].Value = tongsp;
+
+            var allCells = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column];
+            var cellFont = allCells.Style.Font;
+            cellFont.SetFromFont(new Font("Calibri", 10));
+
+            worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;
+            worksheet.PrinterSettings.RightMargin = 0.2M / 2.54M;
+            worksheet.PrinterSettings.TopMargin = 0.2M / 2.54M;
+            worksheet.Protection.IsProtected = false;
+            worksheet.Protection.AllowSelectLockedCells = false;
+            if (File.Exists("hts.xlsx"))
+            {
+                File.Delete("hts.xlsx");
+
+            }
+            ExcelPkg.SaveAs(new FileInfo("hts.xlsx"));
+            var app = new excel.Application();
+
+            excel.Workbooks book = app.Workbooks;
+            excel.Workbook sh = book.Open(Path.GetFullPath("hts.xlsx"));
+            //app.Visible = true;
+            sh.PrintOutEx();
+            app.Quit();
+        }
         public string layduongdan()
         {
             return duongdanfileexcel;
         }
-        public void xuatfile(ListView lv,string tongsoluong)
+        public void xuatfile(DataTable dt,string tongsp)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Mã Sản Phẩm", typeof(String));
-            dt.Columns.Add("SL", typeof(String));
-            
-            dt.AcceptChanges();
-            for (int i = 0; i < lv.Items.Count; i++)
+            string tenfile = DateTime.Now.ToString("dd-MM-yyyy HH-mm");
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
-                DataRow row1 = dt.NewRow();
-                row1[0] = lv.Items[i].SubItems[0].Text.ToString();
-                row1[1] = lv.Items[i].SubItems[1].Text.ToString();
+                saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
+                saveDialog.FileName = "Điều chuyển-" + tenfile + "";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
+                    string exportFilePath = saveDialog.FileName;
+                    var newFile = new FileInfo(exportFilePath);
+                    using (var package = new ExcelPackage(newFile))
+                    {
 
-                dt.Rows.Add(row1);
-                dt.AcceptChanges();
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("27LVL_Điều chuyển");
+
+                        worksheet.Cells["A1"].LoadFromDataTable(dt, true);
+                       
+                        worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
+                        worksheet.Cells[worksheet.Dimension.End.Row, 3].Value = tongsp;
+                        worksheet.Column(1).AutoFit();
+                        worksheet.Column(2).AutoFit();
+                        worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;
+                        worksheet.PrinterSettings.RightMargin = 0.2M / 2.54M;
+                        package.Save();
+
+                    }
+                }
             }
-            DataRow rowcuoi = dt.NewRow();
-            rowcuoi[0] = "Tổng số lượng:";
-            rowcuoi[1] = tongsoluong;
-            dt.Rows.Add(rowcuoi);
-            xuatfileexcel(dt);
         }
         #endregion
 

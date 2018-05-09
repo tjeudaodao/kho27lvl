@@ -83,12 +83,7 @@ namespace canifa
             {
                masp = dtr[0].ToString();
             }
-            string cautruc= @"\d\w{2}\d{2}[SWAC]\d{3}-\w{2}\d{3}-\d{2}\w+";
-            if (Regex.IsMatch(masp,cautruc))
-            {
-                masp = masp.Substring(0, 18);
-            }
-            
+           
             dongdt();
             return masp;
         }
@@ -240,6 +235,7 @@ namespace canifa
         #endregion
 
         #region cac ham lien quan den tab chuyen hang
+
         public string kiemtracondonhangdangnhatkhong()
         {
             string sql = "select ngay,gio from bangtamchuyenhang";
@@ -259,6 +255,182 @@ namespace canifa
             dongdt();
             return cohaykhong;
         }
+        public string tinhtrang(string masp)
+        {
+            string ketqua = null;
+            if (kiemtracotmatongbangchuyenhang1()!="0")
+            {
+                if (kiemtracotrongcotmatong(ham.laymatong(masp))!=null)
+                {
+                    ketqua = "Thiếu";
+                }
+                else if (kiemtracotrongcotmatong(ham.laymatong(masp)) == null)
+                {
+                    double soluongtt = laysoluongthucte(masp);
+                    double soluongtd = laysoluongtudon(masp);
+
+                    if (soluongtd == 0)
+                    {
+                        ketqua = "Ngoài đơn";
+                    }
+                    else if (soluongtt < soluongtd)
+                    {
+                        ketqua = "Thiếu";
+                    }
+                    else if (soluongtt == soluongtd)
+                    {
+                        ketqua = "Đủ";
+                    }
+                    else if (soluongtt > soluongtd)
+                    {
+                        ketqua = "Thừa";
+                    }
+                }
+            }
+            else if (kiemtracotmatongbangchuyenhang1() == "0")
+            {
+                double soluongtt = laysoluongthucte(masp);
+                double soluongtd = laysoluongtudon(masp);
+
+                if (soluongtd == 0)
+                {
+                    ketqua = "Ngoài đơn";
+                }
+                else if (soluongtt < soluongtd)
+                {
+                    ketqua = "Thiếu";
+                }
+                else if (soluongtt == soluongtd)
+                {
+                    ketqua = "Đủ";
+                }
+                else if (soluongtt > soluongtd)
+                {
+                    ketqua = "Thừa";
+                }
+            }
+            
+            return ketqua;
+        }
+        public void baoamthanh(string masp)
+        {
+            if (tinhtrang(masp)== "Ngoài đơn")
+            {
+                ham.baongoai();
+            }
+            else if (tinhtrang(masp) == "Thiếu")
+            {
+                ham.phatbaothieu();
+            }
+            else if (tinhtrang(masp) == "Đủ")
+            {
+                ham.phatbaodu();
+            }
+            else if (tinhtrang(masp) == "Thừa")
+            {
+                ham.phatbaothua();
+            }
+        }
+        public void chenvaobangthuathieu(string masp)
+        {
+            string sl = laysoluongthucte(masp).ToString();
+            string sql = null;
+            if (kiemtracotrongbangthuathieu(masp)==null)
+            {
+                sql= "insert into bangthuathieu values('" + masp + "','" + sl + "','" + tinhtrang(masp) + "')";
+            }
+            else if(kiemtracotrongbangthuathieu(masp)!=null)
+            {
+                sql= "update bangthuathieu set soluong='" + sl + "',tinhtrang='" + tinhtrang(masp) + "' where masp='" + masp + "'";
+            }
+           
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+
+            cmd.ExecuteNonQuery();
+            dongdt();
+        }
+        public void updatebangthuathieu(string masp)
+        {
+            string sl = laysoluongthucte(masp).ToString();
+            string sql = null;
+            if (sl=="0")
+            {
+                sql = "delete from bangthuathieu where masp='" + masp + "'";
+            }
+            else
+            {
+                sql= "update bangthuathieu set soluong='" + sl + "',tinhtrang='" + tinhtrang(masp) + "' where masp='" + masp + "'";
+            }
+         
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            dongdt();
+        }
+        public void updatebangthuathieukhichendon(DataGridView dtv)
+        {
+            if (dtv.RowCount < 1)
+            {
+                return;
+            }
+            for (int i = 0; i <= dtv.RowCount - 1; i++)
+            {
+               string masp = dtv.Rows[i].Cells[0].Value.ToString();
+               string sql = "update bangthuathieu set tinhtrang='" + tinhtrang(masp) + "' where masp='" + masp + "'";
+                modt();
+                SQLiteCommand cmd = new SQLiteCommand(sql, con);
+                cmd.ExecuteNonQuery();
+                dongdt();
+            }
+            dtv.DataSource = laydulieubangthuathieu();
+        }
+        public string kiemtracotrongbangthuathieu(string masp)
+        {
+            string sql = "select masp from bangthuathieu where masp='" + masp + "'";
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string cohaykhong = null;
+            while (dtr.Read())
+            {
+                cohaykhong = dtr[0].ToString();
+            }
+            dongdt();
+            return cohaykhong;
+        }
+        public string kiemtracotrongcotmatong(string matong)
+        {
+            string sql = "select matong from bangtamchuyenhang1 where matong='" + matong + "'";
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string cohaykhong = null;
+            while (dtr.Read())
+            {
+                cohaykhong = dtr[0].ToString();
+            }
+            dongdt();
+            return cohaykhong;
+        }
+        public string kiemtracotmatongbangchuyenhang1()
+        {
+            string sql = "select count(matong) from bangtamchuyenhang1";
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteDataReader dtr = cmd.ExecuteReader();
+            string sl1 = null;
+            while (dtr.Read())
+            {
+                sl1 = dtr[0].ToString();
+            }
+            if (sl1 == null)
+            {
+                sl1 = "0";
+            }
+            dongdt();
+            return sl1;
+        }
 
         public void insertdl1(string barcode,string masp, string sl,string ngay,string gio)
         {
@@ -269,9 +441,29 @@ namespace canifa
             cmd.ExecuteNonQuery();
             dongdt();
         }
-        public DataTable locdulieu2()
+        public DataTable laydulieubangthuathieu()
         {
-            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL thực tế' from bangtamchuyenhang group by masp";
+            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT',tinhtrang as 'Tình trạng' from bangthuathieu group by masp";
+            modt();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            dongdt();
+            return dt;
+        }
+        public DataTable laybangdein()
+        {
+            string sql = "select masp as 'Mã thực tế', sum(soluong) as 'SL TT' from bangthuathieu group by masp";
+            modt();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            dongdt();
+            return dt;
+        }
+        public DataTable laybangxuatchuyenhang()
+        {
+            string sql = "select barcode as 'Barcode',masp as 'Mã thực tế', sum(soluong) as 'Số lượng' from bangtamchuyenhang group by masp";
             modt();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql, con);
             DataTable dt = new DataTable();
@@ -341,7 +533,7 @@ namespace canifa
         }
         public string tongsoluongcannhat()
         {
-            string sql = "select sum(soluong1) from bangtamchuyenhang1";
+            string sql = "select sum(soluong1)+sum(soluong2) from bangtamchuyenhang1";
             string sl = null;
             modt();
             SQLiteCommand cmd = new SQLiteCommand(sql, con);
@@ -353,77 +545,7 @@ namespace canifa
             dongdt();
             return sl;
         }
-        public void updatebangsosanh(ListView lv)
-        {
-            
-            for (int i = 0; i < lv.Items.Count; i++)
-            {
-                string masp = lv.Items[i].SubItems[0].Text.ToString();
-                string sl= laysoluongthucte(lv.Items[i].SubItems[0].Text).ToString();
-                 
-                lv.Items[i].SubItems[1].Text = sl;
-
-                if (kiemtracotrongdon(masp)==null)
-                {
-                    lv.Items[i].SubItems[2].Text = "Ngoài đơn";
-                    continue;
-                }
-                if (laysoluongthucte(masp)<laysoluongtudon(masp))
-                {
-                    lv.Items[i].SubItems[2].Text = "Chưa đủ";
-                    ham.phatbaothieu();
-                    continue;
-                }
-                if (laysoluongthucte(masp) == laysoluongtudon(masp))
-                {
-                    lv.Items[i].SubItems[2].Text = "Vừa đủ";
-                    ham.phatbaodu();
-                    continue;
-                }
-                if (laysoluongthucte(masp) > laysoluongtudon(masp))
-                {
-                    lv.Items[i].SubItems[2].Text = "Thừa rồi";
-                    
-                    ham.phatbaothua();
-                    continue;
-                }
-            }
-        }
-        public void updatebanglistview(ListView lv1, string masp)
-        {
-            for (int i = 0; i < lv1.Items.Count; i++)
-            {
-                if (masp == lv1.Items[i].SubItems[0].Text.ToString())
-                {
-                    lv1.Items[i].SubItems[1].Text = laysoluongthucte(masp).ToString();
-                   // lv1.Items[i].SubItems[2].Text = ketqua;
-                    if (kiemtracotrongdon(masp) == null)
-                    {
-                        lv1.Items[i].SubItems[2].Text = "Ngoài đơn";
-                        return;
-                    }
-                    if (laysoluongthucte(masp) < laysoluongtudon(masp))
-                    {
-                        lv1.Items[i].SubItems[2].Text = "Chưa đủ";
-                        //  ham.phatbaothieu();
-                        return;
-                    }
-                    if (laysoluongthucte(masp) == laysoluongtudon(masp))
-                    {
-                        lv1.Items[i].SubItems[2].Text = "Vừa đủ";
-                        // ham.phatbaodu();
-                        return;
-                    }
-                    if (laysoluongthucte(masp) > laysoluongtudon(masp))
-                    {
-                        lv1.Items[i].SubItems[2].Text = "Thừa rồi";
-
-                        // ham.phatbaothua();
-                        return;
-                    }
-                }
-            }
-        }
+          
         public void loadvaodatag1(DataGridView dgv)
         {
             string sql = "select idrow as 'STT',barcode as 'Barcode',masp as 'Mã sản phẩm' ,soluong as 'SL' from bangtamchuyenhang";
@@ -469,6 +591,17 @@ namespace canifa
             cmd2.ExecuteNonQuery();
             dongdt();
         }
+        public void xoabangthuathieu()
+        {
+            string sql = "delete from bangthuathieu";
+            string sql2 = "delete from sqlite_sequence where name='bangthuathieu'";
+            modt();
+            SQLiteCommand cmd = new SQLiteCommand(sql, con);
+            SQLiteCommand cmd2 = new SQLiteCommand(sql2, con);
+            cmd.ExecuteNonQuery();
+            cmd2.ExecuteNonQuery();
+            dongdt();
+        }
         public void deletemaspchuyenhang(string id)
         {
             string sql = "delete from bangtamchuyenhang where idrow='" + id + "'";
@@ -477,12 +610,14 @@ namespace canifa
             cmd.ExecuteNonQuery();
             dongdt();
         }
-        public void savevaobangchuyenhang()
+        public void savevaobangchuyenhang(string ngay,string gio)
         {
+            string sqlupdate = "update bangtamchuyenhang set ngay='" + ngay + "',gio='" + gio + "'";
             string sql = "insert into chuyenhang(barcode,masp,soluong,ngay,gio) select barcode,masp,soluong,ngay,gio from bangtamchuyenhang";
             modt();
-            SQLiteCommand cmd = new SQLiteCommand(sql, con);
-
+            SQLiteCommand cmd = new SQLiteCommand(sqlupdate, con);
+            cmd.ExecuteNonQuery();
+            cmd = new SQLiteCommand(sql, con);
             cmd.ExecuteNonQuery();
             dongdt();
         }

@@ -28,6 +28,8 @@ namespace canifa
         static string gio = "";
         static string idrows = "";
         static bool cochuthaydoi = false;
+        static int tabnao =1;
+
         string thongbaobandau = "Ấn vào nút 'Kiểm hàng' để bắt đầu \n- Nếu có số phiếu thì scan số phiếu. \n -Sau đó muốn chính sửa mã nào thì nhấn trực tiếp vào mã đó tại bảng ngoài cùng bên trái";
         public Form1()
         {
@@ -71,7 +73,7 @@ namespace canifa
             btntabtimkiem.BackColor = Color.DimGray;
             btnchuyenhang.BackColor = Color.Tomato;
             //  btntabcaidat.BackColor = Color.DimGray;
-
+            tabnao = 2;
             pantieude2.BackColor = Color.Tomato;
             panduoicung.BackColor = Color.Tomato;
             uschuyenhang.Show();
@@ -105,7 +107,7 @@ namespace canifa
             btnkiemhang.BackColor = Color.MediumSpringGreen;
             btntabtimkiem.BackColor = Color.DimGray;
             // btntabcaidat.BackColor = Color.DimGray;
-
+            tabnao = 1;
             pantieude2.BackColor = Color.MediumSpringGreen;
             panduoicung.BackColor = Color.MediumSpringGreen;
             ustimkiem.Hide();
@@ -126,7 +128,6 @@ namespace canifa
             {
                 dulieu.xoabangtam();
                 dulieu.xoabangtam2();
-                dulieu.xoabangtamchuyenhang();
                 dulieu.xoabangtamchuyenhang1();
                 this.Close();
             }
@@ -171,7 +172,7 @@ namespace canifa
             btnhangravao.BackColor = Color.DimGray;
             btntabkhuyemmai.BackColor = Color.DimGray;
             // btntabcaidat.BackColor = Color.DimGray;
-
+            tabnao = 3;
             ustimkiem.Show();
             ustimkiem.BringToFront();
         }
@@ -328,7 +329,24 @@ namespace canifa
             }
 
         }
+        public void chonhangcuoicung()
+        {
+            try
+            {
+                int RowIndex = datagird0.RowCount - 1;
+                DataGridViewRow row = datagird0.Rows[RowIndex];
+                idrows = row.Cells[0].Value.ToString();
+                txtbarcode.Text = row.Cells[1].Value.ToString();
+                txtmasp.Text = row.Cells[2].Value.ToString();
+                pbdelete.Visible = true;
+            }
+            catch (Exception)
+            {
 
+                ham.thongbaogocmanhinh(ctrNotifi, "Báo", "Chưa có dữ liệu", 1);
+            }
+
+        }
         private void datagird0_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -568,6 +586,36 @@ namespace canifa
                     uschuyenhang.pbpause_Click(uschuyenhang.laytuchuyenhang, new KeyEventArgs(keyData));
                 }
                 
+            }
+            if (keyData==Keys.Down)
+            {
+                if (tabnao==2)
+                {
+                    uschuyenhang.chonhangcuoicung();
+                    ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
+                }
+                else if (tabnao == 1)
+                {
+                    chonhangcuoicung();
+                    ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
+                }
+            }
+            if (keyData==Keys.Delete)
+            {
+                if (tabnao==2)
+                {
+                    if (uschuyenhang.laychuyenhangxoama.Visible == true)
+                    {
+                        uschuyenhang.pbdelete_Click(uschuyenhang.laychuyenhangxoama, new KeyEventArgs(keyData));
+                    }
+                }
+                else if (tabnao==1)
+                {
+                    if (pbdelete.Visible==true)
+                    {
+                        pbdelete_Click(pbdelete, new KeyEventArgs(keyData));
+                    }
+                }
             }
             return base.ProcessCmdKey(ref msg, keyData);    
         }

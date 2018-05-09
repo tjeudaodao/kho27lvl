@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chuyenhang));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datagrid1 = new System.Windows.Forms.DataGridView();
             this.datagrid3 = new System.Windows.Forms.DataGridView();
             this.txtbarcode = new System.Windows.Forms.TextBox();
@@ -48,21 +50,19 @@
             this.lbthongbaoloi = new System.Windows.Forms.Label();
             this.lbthongbao = new System.Windows.Forms.Label();
             this.btnbatdau = new System.Windows.Forms.Button();
-            this.lv1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.lbsoluongcannhat = new System.Windows.Forms.Label();
             this.pbsave = new System.Windows.Forms.PictureBox();
             this.ctroNotifi = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnindenhat = new System.Windows.Forms.Button();
+            this.datag2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbdelete)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
             this.SuspendLayout();
             // 
             // datagrid1
@@ -275,43 +275,6 @@
             this.btnbatdau.UseVisualStyleBackColor = false;
             this.btnbatdau.Click += new System.EventHandler(this.btnbatdau_Click);
             // 
-            // lv1
-            // 
-            this.lv1.BackColor = System.Drawing.Color.Silver;
-            this.lv1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lv1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lv1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lv1.FullRowSelect = true;
-            this.lv1.GridLines = true;
-            this.lv1.HideSelection = false;
-            this.lv1.Location = new System.Drawing.Point(457, 279);
-            this.lv1.MultiSelect = false;
-            this.lv1.Name = "lv1";
-            this.lv1.Size = new System.Drawing.Size(407, 359);
-            this.lv1.TabIndex = 11;
-            this.lv1.UseCompatibleStateImageBehavior = false;
-            this.lv1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Mã sản phẩm";
-            this.columnHeader1.Width = 220;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "SL";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 50;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tình trạng";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 135;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -367,16 +330,52 @@
             this.btnindenhat.UseVisualStyleBackColor = false;
             this.btnindenhat.Click += new System.EventHandler(this.btnindenhat_Click);
             // 
+            // datag2
+            // 
+            this.datag2.AllowUserToAddRows = false;
+            this.datag2.AllowUserToDeleteRows = false;
+            this.datag2.AllowUserToResizeColumns = false;
+            this.datag2.AllowUserToResizeRows = false;
+            this.datag2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.datag2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.datag2.BackgroundColor = System.Drawing.Color.LightGray;
+            this.datag2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datag2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.datag2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Comic Sans MS", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datag2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.datag2.Location = new System.Drawing.Point(457, 294);
+            this.datag2.MultiSelect = false;
+            this.datag2.Name = "datag2";
+            this.datag2.ReadOnly = true;
+            this.datag2.RowHeadersVisible = false;
+            this.datag2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datag2.Size = new System.Drawing.Size(407, 343);
+            this.datag2.TabIndex = 103;
+            // 
             // chuyenhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.datag2);
             this.Controls.Add(this.btnindenhat);
             this.Controls.Add(this.pbsave);
             this.Controls.Add(this.lbsoluongcannhat);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lv1);
             this.Controls.Add(this.lbthongbao);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnbatdau);
@@ -398,6 +397,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbdelete)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datag2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,14 +419,11 @@
         private System.Windows.Forms.Label lbthongbaoloi;
         private System.Windows.Forms.Label lbthongbao;
         private System.Windows.Forms.Button btnbatdau;
-        private System.Windows.Forms.ListView lv1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbsoluongcannhat;
         private System.Windows.Forms.PictureBox pbsave;
         private System.Windows.Forms.NotifyIcon ctroNotifi;
         private System.Windows.Forms.Button btnindenhat;
+        private System.Windows.Forms.DataGridView datag2;
     }
 }
