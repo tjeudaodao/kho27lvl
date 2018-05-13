@@ -533,14 +533,17 @@ namespace canifa
         }
         public string tongsoluongcannhat()
         {
-            string sql = "select sum(soluong1)+sum(soluong2) from bangtamchuyenhang1";
+            string sql = "select sum(soluong1),sum(soluong2) from bangtamchuyenhang1";
+
             string sl = null;
             modt();
             SQLiteCommand cmd = new SQLiteCommand(sql, con);
             SQLiteDataReader dtr = cmd.ExecuteReader();
             while (dtr.Read())
             {
-                sl = dtr[0].ToString();
+                double sl1 = ham.ConvertToDouble(dtr[0].ToString());
+                double sl2 = ham.ConvertToDouble(dtr[1].ToString());
+                sl = (sl1 + sl2).ToString();
             }
             dongdt();
             return sl;
@@ -620,6 +623,42 @@ namespace canifa
             cmd = new SQLiteCommand(sql, con);
             cmd.ExecuteNonQuery();
             dongdt();
+        }
+        public DataTable tachdonmoi(DataGridView dtg)
+        {
+            for (int i = 0; i <= dtg.RowCount-1; i++)
+            {
+                string masp = dtg.Rows[i].Cells[0].Value.ToString();
+                string sl = dtg.Rows[i].Cells[1].Value.ToString();
+                if (kiemtracotrongdon(masp)!=null)
+                {
+                    double slgoc = laysoluongtudon(masp);
+                    string slupdate = (slgoc - ham.ConvertToDouble(sl)).ToString();
+                    string sql = "update bangtamchuyenhang1 set soluong1='" + slupdate + "' where masp='" + masp + "'";
+                    modt();
+                    SQLiteCommand cmd = new SQLiteCommand(sql, con);
+                    cmd.ExecuteNonQuery();
+                    dongdt();
+                }
+                
+            }
+            string sql2 = "select * from bangtamchuyenhang1";
+            modt();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, con);
+            DataTable dt1 = new DataTable();
+            dta.Fill(dt1);
+            dongdt();
+            return dt1;
+        }
+     public DataTable thunghiemm()
+        {
+            string sql2 = "select masp from bangtamchuyenhang1";
+            modt();
+            SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, con);
+            DataTable dt1 = new DataTable();
+            dta.Fill(dt1);
+            dongdt();
+            return dt1;
         }
         #endregion
 

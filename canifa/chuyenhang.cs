@@ -62,7 +62,7 @@ namespace canifa
                         {
                             txtmasp.Text = dulieu.laymasp(txtbarcode.Text);
                             lbsoluong.Text = "1";
-
+                            lbthongbao.Text = dulieu.tinhtrang(txtmasp.Text);
                             dulieu.insertdl1(txtbarcode.Text, txtmasp.Text, lbsoluong.Text, ngay, gio);
                             dulieu.loadvaodatag1(datagrid1);
                             dulieu.baoamthanh(txtmasp.Text);
@@ -351,7 +351,7 @@ namespace canifa
                 catch (Exception)
                 {
 
-                    lbthongbao.Text = "Có vấn đề";
+                    lbthongbaoloi.Text = "Có vấn đề";
                 }
             }
         }
@@ -375,6 +375,34 @@ namespace canifa
             }
         }
 
-        
+        private void btntachdon_Click(object sender, EventArgs e)
+        {
+            DialogResult hoi = MessageBox.Show("Tạo 1 đơn mới từ dữ liệu gốc", "Hỏi", MessageBoxButtons.YesNo);
+            if (hoi==DialogResult.Yes)
+            {
+                try
+                {
+                    dulieu.savevaobangchuyenhang(ngay, gio);
+                    dulieu.xoabangtamchuyenhang();
+                    datagrid3.DataSource = dulieu.tachdonmoi(datag2);
+                   
+                    dulieu.xoabangthuathieu();
+                    lammoitatca();
+                    lbsoluongcannhat.Text = dulieu.tongsoluongcannhat();
+                    lbthongbao.Text = "OK tiếp tục thôi";
+                    ham.thongbaogocmanhinh(ctroNotifi, "OK", "Triển chiêu", 1);
+                }
+                catch (Exception)
+                {
+
+                    lbthongbaoloi.Text = "Có vấn đề";
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            datag4.DataSource = dulieu.thunghiemm();
+        }
     }
 }

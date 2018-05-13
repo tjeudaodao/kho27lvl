@@ -376,11 +376,11 @@ namespace canifa
         }
         public void xuatfile(DataTable dt,string tongsp)
         {
-            string tenfile = DateTime.Now.ToString("dd-MM-yyyy HH-mm");
+            string tenfile = DateTime.Now.ToString("dd-MM HH-mm");
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
-                saveDialog.FileName = "Điều chuyển-" + tenfile + "";
+                saveDialog.FileName = "Điều chuyển-" + tenfile + "-"+tongsp+"sp";
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);

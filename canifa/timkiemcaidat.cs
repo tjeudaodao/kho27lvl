@@ -20,7 +20,7 @@ namespace canifa
         {
             InitializeComponent();
             lbghichu.Text = "Muốn xem thông tin ngày nào thì click chọn vào ngày đó tại bảng bên trên";
-            ngaymuontim = DateTime.Now.ToString("ddMMyyyy");
+            ngaymuontim = DateTime.Now.ToString("dd/MM/yyyy");
             datag2.DataSource = dulieu.loadbangchuyenhanghang(ngaymuontim);
             datag1.DataSource = dulieu.loadbangkiemhang(ngaymuontim);
             lbsoluongkiemhang.Text = dulieu.laysoluongngaykiem(ngaymuontim);
@@ -32,7 +32,7 @@ namespace canifa
             try
             {
                 var month = sender as MonthCalendar;
-                ngaymuontim = month.SelectionStart.ToString("ddMMyyyy");
+                ngaymuontim = month.SelectionStart.ToString("dd/MM/yyyy");
                 lbghichu.Text = "Đã chọn ngày:\n- " + month.SelectionStart.ToString("dd/MM/yyyy");
                 datag2.DataSource = dulieu.loadbangchuyenhanghang(ngaymuontim);
                 datag1.DataSource = dulieu.loadbangkiemhang(ngaymuontim);

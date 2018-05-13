@@ -293,7 +293,7 @@ namespace canifa
                 dulieu.xoabangtam();
                 dulieu.xoabangtam2();
                 txtbarcode.Enabled = true;
-                ngay = DateTime.Now.ToString("ddMMyyyy");
+                ngay = DateTime.Now.ToString("dd/MM/yyyy");
                 gio = DateTime.Now.ToString("HH:mm");
                 btnbatdaukiemhang.Enabled = false;
                 txtbarcode.Focus();
