@@ -72,7 +72,7 @@
             // 
             // lbmatong
             // 
-            this.lbmatong.BackColor = System.Drawing.Color.Silver;
+            this.lbmatong.BackColor = System.Drawing.Color.Gainsboro;
             this.lbmatong.Font = new System.Drawing.Font("Comic Sans MS", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbmatong.ForeColor = System.Drawing.Color.Indigo;
             this.lbmatong.Location = new System.Drawing.Point(30, 90);
@@ -84,7 +84,7 @@
             // 
             // lbgiacuoicung
             // 
-            this.lbgiacuoicung.BackColor = System.Drawing.Color.Gray;
+            this.lbgiacuoicung.BackColor = System.Drawing.Color.Gainsboro;
             this.lbgiacuoicung.Font = new System.Drawing.Font("Comic Sans MS", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbgiacuoicung.ForeColor = System.Drawing.Color.Indigo;
             this.lbgiacuoicung.Location = new System.Drawing.Point(505, 39);
@@ -96,7 +96,7 @@
             // 
             // lbphantramgiam
             // 
-            this.lbphantramgiam.BackColor = System.Drawing.Color.Gray;
+            this.lbphantramgiam.BackColor = System.Drawing.Color.Gainsboro;
             this.lbphantramgiam.Font = new System.Drawing.Font("Comic Sans MS", 100F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbphantramgiam.ForeColor = System.Drawing.Color.Indigo;
             this.lbphantramgiam.Location = new System.Drawing.Point(505, 318);
@@ -188,9 +188,9 @@
             // 
             // lbmotasanpham
             // 
-            this.lbmotasanpham.BackColor = System.Drawing.Color.Gray;
+            this.lbmotasanpham.BackColor = System.Drawing.Color.Gainsboro;
             this.lbmotasanpham.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbmotasanpham.ForeColor = System.Drawing.Color.LightYellow;
+            this.lbmotasanpham.ForeColor = System.Drawing.Color.Gray;
             this.lbmotasanpham.Location = new System.Drawing.Point(506, 534);
             this.lbmotasanpham.Name = "lbmotasanpham";
             this.lbmotasanpham.Size = new System.Drawing.Size(834, 101);

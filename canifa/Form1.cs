@@ -21,7 +21,7 @@ namespace canifa
         ham ham = new ham();
         chuyenhang uschuyenhang = new chuyenhang();
        // hangravao ushangravao = new hangravao();
-       // khuyenmai uskhuyenmai = new khuyenmai();
+        khuyenmai uskhuyenmai = new khuyenmai();
         timkiemcaidat ustimkiem = new timkiemcaidat();
         
         static string ngay = "";
@@ -42,16 +42,16 @@ namespace canifa
            // ushangravao.Location = new Point(0, 70);
            // ushangravao.Name = "tabhangravao";
           //  this.Controls.Add(ushangravao);
-          //  uskhuyenmai.Location = new Point(0, 70);
-          //  uskhuyenmai.Name = "tabkhuyenmai";
-          //  this.Controls.Add(uskhuyenmai);
+            uskhuyenmai.Location = new Point(0, 70);
+            uskhuyenmai.Name = "tabkhuyenmai";
+            this.Controls.Add(uskhuyenmai);
             ustimkiem.Location = new Point(0, 70);
             ustimkiem.Name = "tabtimkiem";
             this.Controls.Add(ustimkiem);
 
             uschuyenhang.Hide();
           //  ushangravao.Hide();
-          //  uskhuyenmai.Hide();
+            uskhuyenmai.Hide();
             ustimkiem.Hide();
 
             txtsophieu.Focus();
@@ -72,31 +72,13 @@ namespace canifa
             btnhangravao.BackColor = Color.DimGray;
             btntabtimkiem.BackColor = Color.DimGray;
             btnchuyenhang.BackColor = Color.Tomato;
-            //  btntabcaidat.BackColor = Color.DimGray;
+
             tabnao = 2;
             pantieude2.BackColor = Color.Tomato;
             panduoicung.BackColor = Color.Tomato;
             uschuyenhang.Show();
             uschuyenhang.BringToFront();
-            /*
-            chuyenhang uschuyenhang = new chuyenhang();
-            uschuyenhang.Location = new Point(0, 70);
-            uschuyenhang.Name = "tabchuyenhang";
-                     
-            foreach (Control c in this.Controls)
-            {
-                if (c.Name == "tabchuyenhang")
-                {
-                    this.Controls["tabchuyenhang"].BringToFront();
-                    
-                    return;
-                }
-                
-            }
-            this.Controls.Add(uschuyenhang);
-            uschuyenhang.BringToFront();
-            //MessageBox.Show("da co");
-            */
+           
         }
 
         private void btnkiemhang_Click(object sender, EventArgs e)
@@ -106,14 +88,14 @@ namespace canifa
             btntabkhuyemmai.BackColor = Color.DimGray;
             btnkiemhang.BackColor = Color.MediumSpringGreen;
             btntabtimkiem.BackColor = Color.DimGray;
-            // btntabcaidat.BackColor = Color.DimGray;
+          
             tabnao = 1;
             pantieude2.BackColor = Color.MediumSpringGreen;
             panduoicung.BackColor = Color.MediumSpringGreen;
             ustimkiem.Hide();
             uschuyenhang.Hide();
           //  ushangravao.Hide();
-          //  uskhuyenmai.Hide();
+            uskhuyenmai.Hide();
             //  uscaidat.Hide();
         }
         private void pbmini_Click(object sender, EventArgs e)
@@ -158,9 +140,9 @@ namespace canifa
             panduoicung.BackColor = Color.Indigo;
             btntabtimkiem.BackColor = Color.DimGray;
             // btntabcaidat.BackColor = Color.DimGray;
-
-           // uskhuyenmai.Show();
-           // uskhuyenmai.BringToFront();
+            tabnao = 4;
+            uskhuyenmai.Show();
+            uskhuyenmai.BringToFront();
         }
         private void btntabtimkiem_Click(object sender, EventArgs e)
         {
@@ -592,12 +574,12 @@ namespace canifa
                 if (tabnao==2)
                 {
                     uschuyenhang.chonhangcuoicung();
-                    ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
+                   // ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
                 }
                 else if (tabnao == 1)
                 {
                     chonhangcuoicung();
-                    ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
+                  //  ham.thongbaogocmanhinh(ctrNotifi, "Thông báo", "Vừa chọn mã cuối chít gần nhất", 1);
                 }
             }
             if (keyData==Keys.Delete)
@@ -627,6 +609,11 @@ namespace canifa
                 btnbatdaukiemhang.Focus();
             }
            
+        }
+
+        private void lbtongsoluong_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

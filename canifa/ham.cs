@@ -18,12 +18,12 @@ namespace canifa
 {
     class ham
     {
-        SoundPlayer chay = new SoundPlayer("baoloi.wav");
-        SoundPlayer phat = new SoundPlayer("mamoi.wav");
-        SoundPlayer baothieu = new SoundPlayer("thieu.wav");
-        SoundPlayer baothua = new SoundPlayer("thua.wav");
-        SoundPlayer baodu = new SoundPlayer("du.wav");
-        SoundPlayer ngoai = new SoundPlayer("ngoai.wav");
+        SoundPlayer chay = new SoundPlayer(@"baoloi.wav");
+        SoundPlayer phat = new SoundPlayer(@"mamoi.wav");
+        SoundPlayer baothieu = new SoundPlayer(@"thieu.wav");
+        SoundPlayer baothua = new SoundPlayer(@"thua.wav");
+        SoundPlayer baodu = new SoundPlayer(@"du.wav");
+        SoundPlayer ngoai = new SoundPlayer(@"ngoai.wav");
 
         public string laymatong(string machitiet)
         {
@@ -227,6 +227,17 @@ namespace canifa
             }
             return dt;
         }
+        public DataTable tachdon(DataTable dtmasp,DataTable dtmatong)
+        {
+            foreach (DataRow row in dtmatong.Rows)
+            {
+                DataRow newrow = dtmasp.NewRow();
+                newrow[0] = row[0];
+                newrow[1] = row[1];
+                dtmasp.Rows.Add(newrow);
+            }
+            return dtmasp;
+        }
         public void tudongnhaydenmasp(DataGridView dtv,string masp)
         {
             if (dtv.RowCount<1)
@@ -312,7 +323,7 @@ namespace canifa
 
             var allCells = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column];
             var cellFont = allCells.Style.Font;
-            cellFont.SetFromFont(new Font("Calibri", 15));
+            cellFont.SetFromFont(new Font("Calibri", 12));
 
             worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;
             worksheet.PrinterSettings.RightMargin = 0.2M / 2.54M;
@@ -337,7 +348,8 @@ namespace canifa
         {
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet worksheet = ExcelPkg.Workbook.Worksheets.Add("hts");
-            worksheet.Cells["A1"].LoadFromDataTable(dt, true);
+            worksheet.Cells["A1"].Value = "27 Lê Văn Lương _ Điều chuyển";
+            worksheet.Cells["A3"].LoadFromDataTable(dt, true);
 
             worksheet.Column(1).Width = 28;
             worksheet.Column(2).Width = 4;
@@ -380,7 +392,7 @@ namespace canifa
             using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (.xlsx)|*.xlsx";
-                saveDialog.FileName = "Điều chuyển-" + tenfile + "-"+tongsp+"sp";
+                saveDialog.FileName = "27LVL-ĐC " + tenfile + "-"+tongsp+"sp";
                 if (saveDialog.ShowDialog() != DialogResult.Cancel)
                 {
                     duongdanfileexcel = Path.GetFullPath(saveDialog.FileName);
@@ -394,7 +406,7 @@ namespace canifa
                         worksheet.Cells["A1"].LoadFromDataTable(dt, true);
                        
                         worksheet.Cells[worksheet.Dimension.End.Row + 1, 1].Value = "Tổng sản phẩm:";
-                        worksheet.Cells[worksheet.Dimension.End.Row, 3].Value = tongsp;
+                        worksheet.Cells[worksheet.Dimension.End.Row, 3].Value =Int32.Parse(tongsp);
                         worksheet.Column(1).AutoFit();
                         worksheet.Column(2).AutoFit();
                         worksheet.PrinterSettings.LeftMargin = 0.2M / 2.54M;

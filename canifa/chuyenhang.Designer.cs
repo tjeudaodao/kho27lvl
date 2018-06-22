@@ -57,8 +57,6 @@
             this.btnindenhat = new System.Windows.Forms.Button();
             this.datag2 = new System.Windows.Forms.DataGridView();
             this.btntachdon = new System.Windows.Forms.Button();
-            this.datag4 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpause)).BeginInit();
@@ -66,7 +64,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datag4)).BeginInit();
             this.SuspendLayout();
             // 
             // datagrid1
@@ -76,6 +73,7 @@
             this.datagrid1.AllowUserToResizeColumns = false;
             this.datagrid1.AllowUserToResizeRows = false;
             this.datagrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.datagrid1.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -110,7 +108,7 @@
             this.datagrid3.AllowUserToResizeRows = false;
             this.datagrid3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrid3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.datagrid3.BackgroundColor = System.Drawing.Color.Silver;
+            this.datagrid3.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagrid3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -148,7 +146,8 @@
             // 
             // lbtongsoluong
             // 
-            this.lbtongsoluong.BackColor = System.Drawing.Color.Gray;
+            this.lbtongsoluong.BackColor = System.Drawing.Color.White;
+            this.lbtongsoluong.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbtongsoluong.Font = new System.Drawing.Font("Microsoft Sans Serif", 165F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbtongsoluong.ForeColor = System.Drawing.Color.Tomato;
             this.lbtongsoluong.Location = new System.Drawing.Point(873, 26);
@@ -160,11 +159,12 @@
             // 
             // txtmasp
             // 
+            this.txtmasp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtmasp.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmasp.ForeColor = System.Drawing.Color.DimGray;
             this.txtmasp.Location = new System.Drawing.Point(457, 89);
             this.txtmasp.Name = "txtmasp";
-            this.txtmasp.Size = new System.Drawing.Size(410, 45);
+            this.txtmasp.Size = new System.Drawing.Size(410, 38);
             this.txtmasp.TabIndex = 3;
             this.txtmasp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -172,11 +172,11 @@
             // 
             this.lbsoluong.AutoSize = true;
             this.lbsoluong.BackColor = System.Drawing.Color.Gray;
-            this.lbsoluong.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbsoluong.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbsoluong.Location = new System.Drawing.Point(715, 147);
+            this.lbsoluong.Font = new System.Drawing.Font("Comic Sans MS", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbsoluong.ForeColor = System.Drawing.SystemColors.Control;
+            this.lbsoluong.Location = new System.Drawing.Point(701, 154);
             this.lbsoluong.Name = "lbsoluong";
-            this.lbsoluong.Size = new System.Drawing.Size(152, 39);
+            this.lbsoluong.Size = new System.Drawing.Size(163, 46);
             this.lbsoluong.TabIndex = 5;
             this.lbsoluong.Text = "Số lượng";
             this.lbsoluong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -209,9 +209,9 @@
             this.btnxuatexcel.FlatAppearance.BorderSize = 0;
             this.btnxuatexcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnxuatexcel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnxuatexcel.Location = new System.Drawing.Point(1212, 344);
+            this.btnxuatexcel.Location = new System.Drawing.Point(1212, 367);
             this.btnxuatexcel.Name = "btnxuatexcel";
-            this.btnxuatexcel.Size = new System.Drawing.Size(139, 45);
+            this.btnxuatexcel.Size = new System.Drawing.Size(139, 40);
             this.btnxuatexcel.TabIndex = 16;
             this.btnxuatexcel.Text = "Xuất ra Excel";
             this.btnxuatexcel.UseVisualStyleBackColor = false;
@@ -225,7 +225,7 @@
             this.btnthemdon.ForeColor = System.Drawing.Color.White;
             this.btnthemdon.Location = new System.Drawing.Point(1212, 261);
             this.btnthemdon.Name = "btnthemdon";
-            this.btnthemdon.Size = new System.Drawing.Size(139, 36);
+            this.btnthemdon.Size = new System.Drawing.Size(139, 58);
             this.btnthemdon.TabIndex = 100;
             this.btnthemdon.Text = "Add Vùng dữ liệu";
             this.btnthemdon.UseVisualStyleBackColor = false;
@@ -245,9 +245,9 @@
             this.lbthongbaoloi.BackColor = System.Drawing.Color.Tomato;
             this.lbthongbaoloi.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbthongbaoloi.ForeColor = System.Drawing.Color.White;
-            this.lbthongbaoloi.Location = new System.Drawing.Point(3, -4);
+            this.lbthongbaoloi.Location = new System.Drawing.Point(-1, -4);
             this.lbthongbaoloi.Name = "lbthongbaoloi";
-            this.lbthongbaoloi.Size = new System.Drawing.Size(135, 188);
+            this.lbthongbaoloi.Size = new System.Drawing.Size(139, 192);
             this.lbthongbaoloi.TabIndex = 0;
             this.lbthongbaoloi.Text = "-";
             this.lbthongbaoloi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,7 +257,7 @@
             this.lbthongbao.BackColor = System.Drawing.Color.Tomato;
             this.lbthongbao.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbthongbao.ForeColor = System.Drawing.Color.White;
-            this.lbthongbao.Location = new System.Drawing.Point(638, 192);
+            this.lbthongbao.Location = new System.Drawing.Point(638, 218);
             this.lbthongbao.Name = "lbthongbao";
             this.lbthongbao.Size = new System.Drawing.Size(229, 60);
             this.lbthongbao.TabIndex = 10;
@@ -293,7 +293,7 @@
             // 
             this.lbsoluongcannhat.AutoSize = true;
             this.lbsoluongcannhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbsoluongcannhat.ForeColor = System.Drawing.Color.Tomato;
+            this.lbsoluongcannhat.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.lbsoluongcannhat.Location = new System.Drawing.Point(1079, 251);
             this.lbsoluongcannhat.Name = "lbsoluongcannhat";
             this.lbsoluongcannhat.Size = new System.Drawing.Size(43, 46);
@@ -303,7 +303,7 @@
             // pbsave
             // 
             this.pbsave.Image = ((System.Drawing.Image)(resources.GetObject("pbsave.Image")));
-            this.pbsave.Location = new System.Drawing.Point(563, 195);
+            this.pbsave.Location = new System.Drawing.Point(563, 221);
             this.pbsave.Name = "pbsave";
             this.pbsave.Size = new System.Drawing.Size(69, 58);
             this.pbsave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -325,7 +325,7 @@
             this.btnindenhat.FlatAppearance.BorderSize = 0;
             this.btnindenhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnindenhat.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnindenhat.Location = new System.Drawing.Point(1212, 302);
+            this.btnindenhat.Location = new System.Drawing.Point(1212, 325);
             this.btnindenhat.Name = "btnindenhat";
             this.btnindenhat.Size = new System.Drawing.Size(139, 36);
             this.btnindenhat.TabIndex = 102;
@@ -341,7 +341,7 @@
             this.datag2.AllowUserToResizeRows = false;
             this.datag2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.datag2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.datag2.BackgroundColor = System.Drawing.Color.LightGray;
+            this.datag2.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datag2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
@@ -365,6 +365,7 @@
             this.datag2.Name = "datag2";
             this.datag2.ReadOnly = true;
             this.datag2.RowHeadersVisible = false;
+            this.datag2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.datag2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datag2.Size = new System.Drawing.Size(407, 343);
             this.datag2.TabIndex = 103;
@@ -374,39 +375,19 @@
             this.btntachdon.BackColor = System.Drawing.Color.Gray;
             this.btntachdon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btntachdon.ForeColor = System.Drawing.SystemColors.Control;
-            this.btntachdon.Location = new System.Drawing.Point(1212, 399);
+            this.btntachdon.Location = new System.Drawing.Point(1212, 410);
             this.btntachdon.Name = "btntachdon";
-            this.btntachdon.Size = new System.Drawing.Size(139, 44);
+            this.btntachdon.Size = new System.Drawing.Size(139, 33);
             this.btntachdon.TabIndex = 104;
             this.btntachdon.Text = "Tách đơn";
             this.btntachdon.UseVisualStyleBackColor = false;
             this.btntachdon.Click += new System.EventHandler(this.btntachdon_Click);
-            // 
-            // datag4
-            // 
-            this.datag4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datag4.Location = new System.Drawing.Point(571, 153);
-            this.datag4.Name = "datag4";
-            this.datag4.Size = new System.Drawing.Size(292, 256);
-            this.datag4.TabIndex = 105;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(672, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(267, 72);
-            this.button1.TabIndex = 106;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // chuyenhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.datag4);
             this.Controls.Add(this.btntachdon);
             this.Controls.Add(this.datag2);
             this.Controls.Add(this.btnindenhat);
@@ -435,7 +416,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datag2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datag4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,7 +444,5 @@
         private System.Windows.Forms.Button btnindenhat;
         private System.Windows.Forms.DataGridView datag2;
         private System.Windows.Forms.Button btntachdon;
-        private System.Windows.Forms.DataGridView datag4;
-        private System.Windows.Forms.Button button1;
     }
 }

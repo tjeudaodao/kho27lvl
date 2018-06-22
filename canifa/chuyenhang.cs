@@ -58,7 +58,7 @@ namespace canifa
                     }
                     else
                     {
-                        try
+                      //  try
                         {
                             txtmasp.Text = dulieu.laymasp(txtbarcode.Text);
                             lbsoluong.Text = "1";
@@ -79,10 +79,10 @@ namespace canifa
                                 lbthongbaoloi.Text = "Ok, tiếp tục triển thôi";
                             
                         }
-                        catch (Exception)
+                       // catch (Exception)
                         {
 
-                            ham.thongbaogocmanhinh(ctroNotifi, "Nhắc nhở", "Xem lại đi lỗi rồi", 1);
+                      //      ham.thongbaogocmanhinh(ctroNotifi, "Nhắc nhở", "Xem lại đi lỗi rồi", 1);
                         }
                     }
                 }
@@ -249,7 +249,7 @@ namespace canifa
             }
             lbsoluongcannhat.Text = dulieu.tongsoluongcannhat();
             dulieu.updatebangthuathieukhichendon(datag2);
-            ham.thongbaogocmanhinh(ctroNotifi, "OK", "Nuột", 1);
+            //ham.thongbaogocmanhinh(ctroNotifi, "OK", "Nuột", 1);
         }
         public PictureBox laytuchuyenhang
         {
@@ -289,7 +289,7 @@ namespace canifa
                     ham.xuatfile(dulieu.laybangxuatchuyenhang(), lbtongsoluong.Text);
                     ham.taovainfileexcelchuyenhang(dulieu.laybangdein(),lbtongsoluong.Text);
                     lbthongbaoloi.Text = "Đã xuất ra file excel\n-Đường dẫn:\n'" + ham.layduongdan() + "'";
-                    ham.thongbaogocmanhinh(ctroNotifi, "OK", "Để ý đường dẫn vừa lưu", 1);
+                    ham.thongbaogocmanhinh(ctroNotifi, "OK", "Để ý đường dẫn vừa lưu\nVà lấy phiếu vừa in", 1);
                     return;
                 }
                 lbthongbaoloi.Text = "Chưa có gì mà xuất :)";
@@ -377,7 +377,7 @@ namespace canifa
 
         private void btntachdon_Click(object sender, EventArgs e)
         {
-            DialogResult hoi = MessageBox.Show("Tạo 1 đơn mới từ dữ liệu gốc", "Hỏi", MessageBoxButtons.YesNo);
+            DialogResult hoi = MessageBox.Show("Tạo 1 đơn mới từ dữ liệu gốc đã trừ đi số lượng vừa nhặt", "Hỏi", MessageBoxButtons.YesNo);
             if (hoi==DialogResult.Yes)
             {
                 try
@@ -400,9 +400,6 @@ namespace canifa
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            datag4.DataSource = dulieu.thunghiemm();
-        }
+        
     }
 }

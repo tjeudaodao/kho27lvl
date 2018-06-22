@@ -37,6 +37,7 @@
             this.btnkiemhang = new System.Windows.Forms.Button();
             this.btnchuyenhang = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pbmini = new System.Windows.Forms.PictureBox();
@@ -45,8 +46,6 @@
             this.btntabtimkiem = new System.Windows.Forms.Button();
             this.btntabkhuyemmai = new System.Windows.Forms.Button();
             this.btnhangravao = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lbtongsoluong = new System.Windows.Forms.Label();
             this.txtbarcode = new System.Windows.Forms.TextBox();
             this.txtmasp = new System.Windows.Forms.TextBox();
             this.txtsoluong = new System.Windows.Forms.TextBox();
@@ -70,12 +69,13 @@
             this.ctrNotifi = new System.Windows.Forms.NotifyIcon(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.lbtongsoluongtheodon = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbtongsoluong = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbmini)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagriv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbedit)).BeginInit();
@@ -84,7 +84,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtieptuc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnkiemhang
@@ -142,6 +142,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1366, 70);
             this.panel1.TabIndex = 2;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1213, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(50, 59);
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -222,14 +231,13 @@
             this.btntabkhuyemmai.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btntabkhuyemmai.Image = ((System.Drawing.Image)(resources.GetObject("btntabkhuyemmai.Image")));
             this.btntabkhuyemmai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btntabkhuyemmai.Location = new System.Drawing.Point(870, 1);
+            this.btntabkhuyemmai.Location = new System.Drawing.Point(687, 3);
             this.btntabkhuyemmai.Name = "btntabkhuyemmai";
             this.btntabkhuyemmai.Size = new System.Drawing.Size(200, 59);
             this.btntabkhuyemmai.TabIndex = 0;
             this.btntabkhuyemmai.Text = "Khuyến mãi";
             this.btntabkhuyemmai.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btntabkhuyemmai.UseVisualStyleBackColor = false;
-            this.btntabkhuyemmai.Visible = false;
             this.btntabkhuyemmai.Click += new System.EventHandler(this.btntabkhuyemmai_Click);
             // 
             // btnhangravao
@@ -241,7 +249,7 @@
             this.btnhangravao.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnhangravao.Image = ((System.Drawing.Image)(resources.GetObject("btnhangravao.Image")));
             this.btnhangravao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnhangravao.Location = new System.Drawing.Point(675, 1);
+            this.btnhangravao.Location = new System.Drawing.Point(898, 5);
             this.btnhangravao.Name = "btnhangravao";
             this.btnhangravao.Size = new System.Drawing.Size(200, 59);
             this.btnhangravao.TabIndex = 0;
@@ -251,53 +259,34 @@
             this.btnhangravao.Visible = false;
             this.btnhangravao.Click += new System.EventHandler(this.btnhangravao_Click);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.DimGray;
-            this.panel2.Controls.Add(this.lbtongsoluong);
-            this.panel2.Location = new System.Drawing.Point(940, 76);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(414, 240);
-            this.panel2.TabIndex = 4;
-            // 
-            // lbtongsoluong
-            // 
-            this.lbtongsoluong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbtongsoluong.Font = new System.Drawing.Font("Microsoft Sans Serif", 140F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtongsoluong.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.lbtongsoluong.Location = new System.Drawing.Point(3, 0);
-            this.lbtongsoluong.Name = "lbtongsoluong";
-            this.lbtongsoluong.Size = new System.Drawing.Size(408, 240);
-            this.lbtongsoluong.TabIndex = 0;
-            this.lbtongsoluong.Text = "0";
-            this.lbtongsoluong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // txtbarcode
             // 
-            this.txtbarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbarcode.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtbarcode.Location = new System.Drawing.Point(525, 76);
             this.txtbarcode.Name = "txtbarcode";
-            this.txtbarcode.Size = new System.Drawing.Size(395, 45);
+            this.txtbarcode.Size = new System.Drawing.Size(362, 42);
             this.txtbarcode.TabIndex = 1;
             this.txtbarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbarcode_KeyDown);
             // 
             // txtmasp
             // 
-            this.txtmasp.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmasp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtmasp.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmasp.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtmasp.Location = new System.Drawing.Point(526, 148);
             this.txtmasp.Name = "txtmasp";
-            this.txtmasp.Size = new System.Drawing.Size(394, 45);
+            this.txtmasp.Size = new System.Drawing.Size(361, 35);
             this.txtmasp.TabIndex = 2;
             // 
             // txtsoluong
             // 
+            this.txtsoluong.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtsoluong.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtsoluong.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtsoluong.Location = new System.Drawing.Point(526, 276);
             this.txtsoluong.Name = "txtsoluong";
-            this.txtsoluong.Size = new System.Drawing.Size(143, 45);
+            this.txtsoluong.Size = new System.Drawing.Size(124, 38);
             this.txtsoluong.TabIndex = 3;
             this.txtsoluong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtsoluong.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtsoluong_KeyDown);
@@ -357,7 +346,7 @@
             this.datagriv1.AllowUserToResizeRows = false;
             this.datagriv1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagriv1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.datagriv1.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.datagriv1.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagriv1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.SpringGreen;
@@ -418,7 +407,7 @@
             this.datagird0.AllowUserToResizeColumns = false;
             this.datagird0.AllowUserToResizeRows = false;
             this.datagird0.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.datagird0.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.datagird0.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagird0.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SpringGreen;
@@ -477,19 +466,18 @@
             // 
             // lbthongbao
             // 
-            this.lbthongbao.BackColor = System.Drawing.Color.Gray;
+            this.lbthongbao.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbthongbao.Font = new System.Drawing.Font("Comic Sans MS", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbthongbao.ForeColor = System.Drawing.Color.Honeydew;
-            this.lbthongbao.Location = new System.Drawing.Point(-1, 0);
+            this.lbthongbao.ForeColor = System.Drawing.Color.Gray;
+            this.lbthongbao.Location = new System.Drawing.Point(3, 0);
             this.lbthongbao.Name = "lbthongbao";
-            this.lbthongbao.Size = new System.Drawing.Size(255, 238);
+            this.lbthongbao.Size = new System.Drawing.Size(246, 238);
             this.lbthongbao.TabIndex = 0;
             this.lbthongbao.Text = "Thông báo các kiểu con đà điểu";
             this.lbthongbao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lbthongbao);
             this.panel3.Location = new System.Drawing.Point(1099, 469);
             this.panel3.Name = "panel3";
@@ -499,7 +487,7 @@
             // pbsave
             // 
             this.pbsave.Image = ((System.Drawing.Image)(resources.GetObject("pbsave.Image")));
-            this.pbsave.Location = new System.Drawing.Point(860, 255);
+            this.pbsave.Location = new System.Drawing.Point(827, 255);
             this.pbsave.Name = "pbsave";
             this.pbsave.Size = new System.Drawing.Size(60, 64);
             this.pbsave.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -521,7 +509,7 @@
             this.label1.BackColor = System.Drawing.Color.DimGray;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(716, 301);
+            this.label1.Location = new System.Drawing.Point(683, 301);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 20);
             this.label1.TabIndex = 18;
@@ -582,14 +570,28 @@
             this.lbtongsoluongtheodon.Text = "0";
             this.lbtongsoluongtheodon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox2
+            // lbtongsoluong
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1213, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(50, 59);
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
+            this.lbtongsoluong.BackColor = System.Drawing.Color.White;
+            this.lbtongsoluong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbtongsoluong.Font = new System.Drawing.Font("Microsoft Sans Serif", 140F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtongsoluong.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.lbtongsoluong.Location = new System.Drawing.Point(0, -3);
+            this.lbtongsoluong.Name = "lbtongsoluong";
+            this.lbtongsoluong.Size = new System.Drawing.Size(520, 240);
+            this.lbtongsoluong.TabIndex = 0;
+            this.lbtongsoluong.Text = "0";
+            this.lbtongsoluong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbtongsoluong.Click += new System.EventHandler(this.lbtongsoluong_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lbtongsoluong);
+            this.panel2.Location = new System.Drawing.Point(846, 76);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(517, 240);
+            this.panel2.TabIndex = 4;
             // 
             // Form1
             // 
@@ -629,10 +631,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbmini)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picbox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagriv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbedit)).EndInit();
@@ -641,7 +643,7 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbsave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtieptuc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,8 +654,6 @@
         private System.Windows.Forms.Button btnkiemhang;
         private System.Windows.Forms.Button btnchuyenhang;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lbtongsoluong;
         private System.Windows.Forms.TextBox txtbarcode;
         private System.Windows.Forms.TextBox txtmasp;
         private System.Windows.Forms.TextBox txtsoluong;
@@ -686,6 +686,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbtongsoluongtheodon;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lbtongsoluong;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

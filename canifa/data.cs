@@ -642,7 +642,11 @@ namespace canifa
                 }
                 
             }
-            string sql2 = "select * from bangtamchuyenhang1";
+            return ham.tachdon(tachdon1(), tachdon2());
+        }
+        public DataTable tachdon1()
+        {
+            string sql2 = "select masp as 'Mã sản phẩm',soluong1 as 'Sl sau tách' from bangtamchuyenhang1 where masp notnull";
             modt();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, con);
             DataTable dt1 = new DataTable();
@@ -650,9 +654,9 @@ namespace canifa
             dongdt();
             return dt1;
         }
-     public DataTable thunghiemm()
+        public DataTable tachdon2()
         {
-            string sql2 = "select masp from bangtamchuyenhang1";
+            string sql2 = "select matong,soluong2 from bangtamchuyenhang1 where matong notnull";
             modt();
             SQLiteDataAdapter dta = new SQLiteDataAdapter(sql2, con);
             DataTable dt1 = new DataTable();
